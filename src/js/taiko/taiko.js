@@ -87,6 +87,11 @@ Taiko.prototype.draw = function(time, ctx)
 };
 Taiko.prototype.processBG = function(ctx)
 {
+    let bgChange = window.localStorage.getItem("BGChange");
+    if (bgChange === "1") {
+        ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    }
     var offset = 200 - Taiko.DIAMETER;
     ctx.drawImage(ctx.canvas, 0, offset, ctx.canvas.width, ctx.canvas.height);
     ctx.beginPath();
