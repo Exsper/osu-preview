@@ -117,8 +117,12 @@ Mania.prototype.draw = function(time, ctx)
     }
     ctx.clearRect(0, Mania.HIT_POSITION, Beatmap.WIDTH, Beatmap.HEIGHT - Mania.HIT_POSITION);
 };
-Mania.prototype.processBG = function(ctx)
-{
+Mania.prototype.processBG = function(ctx) {
+    let bgChange = window.localStorage.getItem("BGChange");
+    if (bgChange === "1") {
+        ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    }
     ctx.beginPath();
     ctx.rect(this.columnStart, 0, Mania.COLUMN_WIDTH * this.keyCount, Beatmap.HEIGHT);
     ctx.strokeStyle = '#ddd';

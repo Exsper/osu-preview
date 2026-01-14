@@ -167,4 +167,11 @@ Standard.prototype.draw = function(time, ctx)
         }
         hitObject.draw(time, ctx);
     }
+Standard.prototype.processBG = function (ctx) {
+    let bgChange = window.localStorage.getItem("BGChange");
+    if (bgChange === "1") {
+        ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    }
+};
 };

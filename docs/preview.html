@@ -27,6 +27,7 @@
     </div>
     <div id="settingsPanel">
         <button>点击切换，刷新生效</button>
+	<button id="btnBGChange" class="settingsbtn" value="0">显示背景图片</button>
         <button id="btnDefaultColor" class="settingsbtn" value="0">使用谱面物件颜色</button>
         <button id="btnColorChange" class="settingsbtn" value="0">NewCombo换色</button>
     </div>
@@ -444,6 +445,17 @@
         iniDefaultColor();
         iniColorChange();
 
+		$(document).ready(function() {
+			let bgChange = window.localStorage.getItem("BGChange");
+			let $btnBGChange = $("#btnBGChange");
+			if (bgChange === "1") {
+				$btnBGChange.val("1");
+				$btnBGChange.text("屏蔽背景图片");
+			} else {
+				$btnBGChange.val("0");
+				$btnBGChange.text("显示背景图片");
+			}
+
         $("#btnDefaultColor").on('click', function () {
             let $this = $("#btnDefaultColor");
             var val = $this.val() || "0";
@@ -474,6 +486,21 @@
             }
         });
 
+			$btnBGChange.on('click', function () {
+				let $this = $(this);
+				var val = $this.val() || "0";
+				if (val === "1") {
+					$this.val("0");
+					$this.text("显示背景图片");
+					window.localStorage.setItem("BGChange", 0);
+				}
+				else {
+					$this.val("1");
+					$this.text("屏蔽背景图片");
+					window.localStorage.setItem("BGChange", 1);
+				}
+			});
+		});
         $('#play').on('click', function (e) {
             e.preventDefault();
             if ($(this).hasClass('e')) {
